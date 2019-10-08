@@ -27,8 +27,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import javax.ws.rs.GET;
 //import javax.ws.rs.Path;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
+//import javax.ws.rs.client.Client;
+//import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
@@ -44,6 +44,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 
 @Controller
 @SpringBootApplication
@@ -61,7 +63,8 @@ public class Main {
 
   @RequestMapping("/")
   String index() {
-        Client client = ClientBuilder.newClient();
+        //Client client = ClientBuilder.newClient();
+        ResteasyClient client = new ResteasyClientBuilder().build();
         WebTarget target = client.target("https://api.sandbox.paypal.com/v1/oauth2/token");
         
         Form form = new Form();
